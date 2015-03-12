@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>feedback</title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,
+			.mui-content {
+				background-color: #fff;
+			}
+			.mui-content {
+				margin-top: 10px;
+			}
+			.mui-content input {
+				height: 50px;
+				background-color: #fefefe;
+				border: 1px groove #FAFAFA;
+				border-radius: 0;
+				border-left: none;
+				border-right: none;
+			}
+			.mui-content textarea {
+				border: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<button type="button" class="mui-btn mui-btn-primary mui-btn-link" style="float: right;"><span class="mui-icon mui-icon-paperplane" style="font-size: 30px;"></span></button>
+			<h1 class="mui-title">意见反馈</h1>
+		</header>
+		<div class="mui-content">
+			<h5 style="position: absolute;top: 210px; right: 10px;z-index: 1;"><span id="counter">0</span>/140字</h5>
+			<textarea rows="7" placeholder="请输入反馈意见..."></textarea>
+			<input type="email" required="required" class="mui-input-clear" placeholder=" 手机/邮箱">
+		</div>
+		<script type="text/javascript">
+			document.querySelector("button").addEventListener('tap', function() {
+				plus.nativeUI.showWaiting('正在提交...');
+				mui.ajax('http://www.ba8idu.com', {
+					data: {
+						email: document.getElementsByTagName('input')[0].value,
+						feedback: document.getElementsByTagName('textarea')[0].value
+					},
+					type: 'post', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					success: function(data) {
+						plus.nativeUI.closeWaiting();
+						mui.toast("感谢您的反馈");
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						plus.nativeUI.closeWaiting();
+						mui.toast("反馈失败");
+					}
+				});
+			});
+			
+			/*字数统计*/
+			document.querySelector("textarea").addEventListener('change', function() {
+				document.getElementById("counter").innerText = this.value.length;
+			});
+			document.querySelector("textarea").addEventListener('keydown', function() {
+				document.getElementById("counter").innerText = this.value.length;
+			});
+			document.querySelector("textarea").addEventListener('keyup', function() {
+				document.getElementById("counter").innerText = this.value.length;
+			});
+		</script>
+	</body>
+
+</html>

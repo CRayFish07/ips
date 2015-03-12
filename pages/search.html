@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript">
+			mui.init({
+				statusBarBackground: '#ffffff'  //初始化状态栏颜色
+			});
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-input-row mui-search" style="float: left; width: 85%;">
+				<input type="search" placeholder="请输入职位名称"/>
+			</div>
+			<button type="button" class="mui-btn mui-btn-primary mui-btn-link mui-pull-right mui-action-back">取消</button>
+		</header>
+		<div class="mui-content">
+
+		</div>
+		<script type="text/javascript">
+			document.querySelector("input[type=search]").addEventListener('blur', function() {
+				console.log(this.value);
+			});
+		</script>
+	</body>
+
+</html>

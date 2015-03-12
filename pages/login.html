@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style type="text/css">
+			body,
+			.mui-content {
+				background-color: #FAFAFA;
+			}
+			.login-panel {
+				margin-top: 30px;
+			}
+			.login-panel input {
+				height: 50px;
+				background-color: #fefefe;
+			}
+			.login-panel span {
+				font-size: 12px;
+				margin-left: 30px;
+				color: #ACACB4;
+			}
+			.login-panel-icon img {
+				margin-left: 10px;
+				/*margin-top: 15px;*/
+			}
+			#loginBtn {
+				width: 90%;
+				padding: 12px;
+				margin-top: 30px;
+				font-weight: bolder;
+				color: #fff;
+				background-color: #aaa;
+				margin-left: 5%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-closeempty mui-pull-left"></a>
+			<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined" style="float: right;">注册</button>
+			<h1 class="mui-title" style="font-weight: bold;">登录</h1>
+		</header>
+		<div class="mui-content">
+			<div class="login-panel">
+				<input type="text" class="mui-input-clear" placeholder="邮箱" style="margin-bottom: 0;border-bottom: none;">
+				<input type="password" class="mui-input-clear" placeholder="密码(最少8位)">
+				<button type="button" class="mui-btn mui-btn-link" style="margin-left: 30px;">忘记密码</button>
+				<div class="login-panel-icon" style="float: left;">
+					<span>第三方登录</span>
+					<img id="qq" src="../img/qq.png" width="20" height="20" />
+					<img id="weibo" src="../img/weibo.png" width="24" height="20" />
+					<img id="wechat" src="../img/wechat.png" width="24" height="20" />
+				</div>
+			</div>
+			<button type="button" id="loginBtn" class="mui-btn" disabled="disabled">登 录</button>
+		</div>
+		<script type="text/javascript">
+			document.getElementById("qq").addEventListener('tap', function() {
+				mui.toast("qq登录接口尚未使用");
+			});
+			document.getElementById("weibo").addEventListener('tap', function() {
+				mui.toast("微博登录接口尚未使用");
+			});
+			document.getElementById("wechat").addEventListener('tap', function() {
+				mui.toast("微信登录接口尚未使用");
+			});
+			document.getElementById("loginBtn").addEventListener('tap', function() {
+				var email = document.querySelector("input[type=text]").value;
+				var password = document.querySelector("input[type=password]").value;
+				if (!this.disabled) {
+					plus.storage.setItem("usrname",email);
+					plus.storage.setItem("pwd",password);
+				}
+			});
+
+			/**验证邮箱和密码*/
+			document.querySelector("input[type=text]").addEventListener('keyup', function() {
+					if (validateInput()) {
+						document.getElementById("loginBtn").style.backgroundColor = "#FF3B30";
+						document.getElementById("loginBtn").disabled = false;
+					} else {
+						document.getElementById("loginBtn").style.backgroundColor = "#aaa";
+						document.getElementById("loginBtn").disabled = true;
+					}
+				})
+				/**验证邮箱和密码*/
+			 document.querySelector("input[type=password]").addEventListener('keyup', function() {
+				if (validateInput()) {
+					document.getElementById("loginBtn").style.backgroundColor = "#FF3B30";
+					document.getElementById("loginBtn").disabled = false;
+				} else {
+					document.getElementById("loginBtn").style.backgroundColor = "#aaa";
+					document.getElementById("loginBtn").disabled = true;
+				}
+			})
+
+			function validateInput() {
+				var email = document.querySelector("input[type=text]").value;
+				var password = document.querySelector("input[type=password]").value;
+				if (email.trim() != "") {
+					if (password.trim().length >= 8) {
+						var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+						if (reg.test(email)) { //邮箱正则验证
+							return true;
+						}
+					}
+				}
+				return false;
+			}
+
+			//注册按钮
+			document.querySelector(".mui-btn-primary").addEventListener('tap', function() {
+				mui.openWindow({
+					id: 'register',
+					url: 'register.html',
+					waiting: {
+						autoShow: false //隐藏等待框
+					}
+				});
+			});
+			
+			//找回密码按钮
+			document.querySelector(".mui-btn-link").addEventListener('tap', function() {
+				mui.openWindow({
+					id:'forget-password',
+					url:'forget-password.html',
+					waiting:{
+						autoShow: false
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>
