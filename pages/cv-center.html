@@ -18,21 +18,43 @@
 			.hide{
 				display: none;
 			}
-			.showPanel{
-				border: 1px solid #aaa;
-				height: 150px;
-				width: 70%;
-				margin-left: 15%;
-				background-color: #fff;
-				box-shadow: #333;
+			.head{
+				margin-top: 10px;
+			}
+			.photo,.profile,.edit-panel{
+				display:inline-table;
+				float: left;
+				margin: 5px 0 0 5px;
+			}
+			.head img{
+				width: 70px;
+				height: 70px;
+				border-radius: 10px;
+				margin: 0 0 0 10px;
+			}
+			.mui-icon{
+				font-size: 20px;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div class="mui-content">
-			<div class="showPanel">
-				
+			<div class="show-panel">
+				<div class="head">
+					<div class="photo">
+						<img src="../img/usr_unlogin.jpg"/>
+					</div>
+					<div class="profile">
+						<h4>龚训瑶.成吉思汗<i class="mui-icon mui-icon-navigate"></i></h4>
+						<h5>南京|工作1年</h5>
+						<h5><i class="mui-icon mui-icon-phone"></i> <a href="tel:18651834732">18651834732</a></h5>
+						<h5><i class="mui-icon mui-icon-email"></i> <a href="mailto:jarvan4dev@163.com">jarvan4dev@163.com</a></h5>
+					</div>
+					<div class="edit-panel" style="position: absolute;top: 10px; right: 5px;">
+						<button class="mui-btn mui-btn-link" style="padding: 0;margin: 0;"><i class="mui-icon mui-icon-compose" style="font-size: 40px;"></i></button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
