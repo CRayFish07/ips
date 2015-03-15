@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/magic.min.css" />
+		<style type="text/css">
+			.alert {
+				width: 250px;
+				height: 150px;
+				margin: 20px auto;
+				border: 1px solid #ccc;
+				box-shadow: 2px 2px 2px #888;
+			}
+		</style>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+	<body>
+		<div class="mui-content" style="background-color: #fff;">
+			<input type="button" id="create" value="创建" />
+			<div class="alert">
+
+			</div>
+
+		</div>
+
+		<script type="text/javascript">
+			document.getElementById("create").addEventListener('click', function() {
+				document.getElementsByClassName("alert")[0].className = "alert magictime spaceInDown";
+				setTimeout(function() {
+					document.getElementsByClassName("alert")[0].className = "alert";
+				}, 1100);
+			});
+		</script>
+	</body>
+
+</html>
