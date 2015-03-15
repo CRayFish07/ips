@@ -15,44 +15,54 @@
 			body {
 				background-color: #efeff4;
 			}
-			.head{
+			.mui-content {
+				padding: 5px;
+			}
+			.head {
 				padding: 5px;
 				float: left;
 				width: 100%;
 				background-color: #65C2EB;
 			}
-			.head *{ /*select all text*/
+			.head * {
+				/*select all text*/
+				
 				color: #fff;
 			}
-			.photo,.profile{
+			.body {
+				padding: 5px;
+			}
+			.photo,
+			.profile {
 				float: left;
 				margin: 10px 0 0 5px;
 			}
-			.head img{
+			.head img {
 				width: 70px;
 				height: 70px;
 				border-radius: 10px;
 				margin: 0 0 0 5px;
 				border: 2px solid #fff;
 			}
-			.mui-icon{
+			.mui-icon {
 				font-size: 20px;
 			}
-			.info{
+			.info {
 				float: left;
-				margin: 4px 7px;
+				margin: 5px 0;
+				width: 100%;
 				padding: 5px;
 				border: 1px solid #ccc;
 				background-color: #fff;
 				box-shadow: 2px 2px 3px #ccc;
 			}
-			h5{
+			h5 {
 				color: #333;
 			}
-			.info h5{
+			.info h5 {
 				padding: 5px 5px 5px 15px;
 			}
-			.info h5 span{
+			.info h5 span {
 				padding-left: 30px;
 			}
 		</style>
@@ -60,20 +70,22 @@
 
 	<body>
 		<div class="mui-content">
-				<div class="head">
-					<div class="photo">
-						<img src="../img/usr_unlogin.jpg"/>
-					</div>
-					<div class="profile">
-						<h4>龚训瑶.成吉思汗 <i class="mui-icon mui-icon-navigate"></i></h4>
-						<h5>南京|工作1年</h5>
-						<h5><i class="mui-icon mui-icon-phone"></i> 18651834732</h5>
-						<h5><i class="mui-icon mui-icon-email"></i> jarvan4dev@163.com</h5>
-					</div>
-					<div class="edit-panel" style="position: absolute;top: 10px; right: 5px;">
-						<button class="mui-btn mui-btn-link" style="padding: 0;margin: 0;"><i class="mui-icon mui-icon-compose" style="font-size: 40px;"></i></button>
-					</div>
+			<div class="head">
+				<div class="photo">
+					<img src="../img/usr_unlogin.jpg" />
 				</div>
+				<div class="profile">
+					<h4>龚训瑶.成吉思汗 <i class="mui-icon mui-icon-navigate"></i></h4>
+					<h5>南京|工作1年</h5>
+					<h5><i class="mui-icon mui-icon-phone"></i> 18651834732</h5>
+					<h5><i class="mui-icon mui-icon-email"></i> jarvan4dev@163.com</h5>
+				</div>
+				<div class="edit-panel" style="position: absolute;top: 10px; right: 5px;">
+					<button class="mui-btn mui-btn-link" style="padding: 0;margin: 0;"><i class="mui-icon mui-icon-compose" style="font-size: 40px;"></i>
+					</button>
+				</div>
+			</div>
+			<div class="body">
 				<div class="info">
 					<h5 style="font-weight: 700; color: #333; font-size: 16px;padding-left: 5px;">求职意向</h5>
 					<h5>到岗时间<span>一周以内</span></h5>
@@ -99,6 +111,7 @@
 					<h5>工作描述<span style="display: block;margin-top: -14px;margin-left: 52px;">有时候我觉得自己像一只小小鸟，想要飞却怎么样也飞不高。也许有一天我栖上了枝头，却成为猎人的目标。我飞上了青天才发现自己,从此无依无靠。</span></h5>
 				</div>
 			</div>
+		</div>
 	</body>
 
 </html>
