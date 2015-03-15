@@ -15,48 +15,95 @@
 			body {
 				background-color: #efeff4;
 			}
-			.hide{
-				display: none;
-			}
 			.head{
-				margin-top: 10px;
+				float: left;
+				width: 100%;
+				background-color: #65C2EB;
 			}
-			.photo,.profile,.edit-panel{
+			.head *{ /*select all text*/
+				color: #fff;
+			}
+			.photo,.profile{
 				display:inline-table;
 				float: left;
-				margin: 5px 0 0 5px;
+				margin: 15px 0 0 5px;
 			}
 			.head img{
 				width: 70px;
 				height: 70px;
 				border-radius: 10px;
 				margin: 0 0 0 10px;
+				border: 2px solid #fff;
 			}
 			.mui-icon{
 				font-size: 20px;
 			}
+			.info{
+				display:inline-table;
+				float: left;
+				margin: 5px 0 5px 3%;
+				width: 94%;
+				border: 1px solid #ccc;
+				background-color: #fff;
+				box-shadow: 2px 2px 3px #ccc;
+			}
+			h5{
+				color: #333;
+			}
+			.info h5{
+				padding: 5px 5px 5px 15px;
+			}
+			.info h5 span{
+				padding-left: 30px;
+			}
+			/*textarea{
+				margin-top: -28px; margin-left: 95px; width: 60%;padding: 0;font-size: 14px;color: #333;
+				border: none;
+			}*/
 		</style>
 	</head>
 
 	<body>
 		<div class="mui-content">
-			<div class="show-panel">
 				<div class="head">
 					<div class="photo">
 						<img src="../img/usr_unlogin.jpg"/>
 					</div>
 					<div class="profile">
-						<h4>龚训瑶.成吉思汗<i class="mui-icon mui-icon-navigate"></i></h4>
+						<h4>龚训瑶.成吉思汗 <i class="mui-icon mui-icon-navigate"></i></h4>
 						<h5>南京|工作1年</h5>
-						<h5><i class="mui-icon mui-icon-phone"></i> <a href="tel:18651834732">18651834732</a></h5>
-						<h5><i class="mui-icon mui-icon-email"></i> <a href="mailto:jarvan4dev@163.com">jarvan4dev@163.com</a></h5>
+						<h5><i class="mui-icon mui-icon-phone"></i> 18651834732</h5>
+						<h5><i class="mui-icon mui-icon-email"></i> jarvan4dev@163.com</h5>
 					</div>
 					<div class="edit-panel" style="position: absolute;top: 10px; right: 5px;">
 						<button class="mui-btn mui-btn-link" style="padding: 0;margin: 0;"><i class="mui-icon mui-icon-compose" style="font-size: 40px;"></i></button>
 					</div>
 				</div>
+				<div class="info">
+					<h5 style="font-weight: 700; color: #333; font-size: 16px;padding-left: 5px;">求职意向</h5>
+					<h5>到岗时间<span>一周以内</span></h5>
+					<h5>工作性质<span>全职</span></h5>
+					<h5>目标地点<span>上海</span></h5>
+					<h5>期望薪资<span>4000/月</span></h5>
+					<h5>目标职位<span>Java工程师</span></h5>
+				</div>
+				<div class="info">
+					<h5 style="font-weight: 700; color: #333; font-size: 16px;padding-left: 5px;">教育背景</h5>
+					<h5>学校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>南京林业大学</span></h5>
+					<h5>专业类别<span>计算机类</span></h5>
+					<h5>专业名称<span>网络工程</span></h5>
+					<h5>入学时间<span>2011年9月</span></h5>
+					<h5>学历&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>本科</span></h5>
+				</div>
+				<div class="info">
+					<h5 style="font-weight: 700; color: #333; font-size: 16px;padding-left: 5px;">工作经历</h5>
+					<h5>时间&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>3013/10--2014/02</span></h5>
+					<h5>公司名称<span>南京森云有限公司</span></h5>
+					<h5>行业类别<span>计算机软件</span></h5>
+					<h5>公司规模<span>20-99人</span></h5>
+					<h5>工作描述<span style="display: block; width: 80%;margin-top: -14px;margin-left: 52px;">有时候我觉得自己像一只小小鸟，想要飞却怎么样也飞不高。也许有一天我栖上了枝头，却成为猎人的目标。我飞上了青天才发现自己,从此无依无靠。</span></h5>
+				</div>
 			</div>
-		</div>
 	</body>
 
 </html>
