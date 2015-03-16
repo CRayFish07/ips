@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-content {
+				padding: 0;
+			}
+			.mui-content>.mui-table-view:first-child {
+				margin-top: 0;
+			}
+			.mui-table h5,
+			.mui-table .mui-h5,
+			.mui-table .mui-h6,
+			.mui-table p {
+				margin-top: 0;
+			}
+			.mui-table .oa-icon {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+			}
+			.mui-table-view-cell {
+				padding: 3px 15px;
+			}
+			.mui-table h4{
+				color: #777;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<ul id="message-list" class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<div class="mui-table">
+							<div class="mui-table-cell mui-col-xs-10">
+								<h4 class="mui-ellipsis">面试邀请</h4>
+								<p class="mui-h5 mui-ellipsis">Hi，龚训瑶，您的简历我们已经收到，请您于今日抽出时间与我们联系，以便我们给您安排面试和笔试</p>
+							</div>
+							<div class="mui-table-cell mui-col-xs-2 mui-text-right">
+								<span class="mui-h5">12:25</span>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<div class="mui-table">
+							<div class="mui-table-cell mui-col-xs-10">
+								<h4 class="mui-ellipsis">offer</h4>
+								<p class="mui-h5 mui-ellipsis">Congratulations,Jarvan, you're good at java web and we hope you can join us</p>
+							</div>
+							<div class="mui-table-cell mui-col-xs-2 mui-text-right">
+								<span class="mui-h5">12:25</span>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: false
+			});
+			(function($) {
+				var btnArray = ['确认', '取消'];
+				$('#message-list').on('tap', '.mui-btn', function(event) {
+					var elem = this;
+					mui.confirm('确认删除该条消息？',btnArray, function(e) {
+						if (e.index == 0) {
+							var li = elem.parentNode.parentNode;
+							//在此处通知服务器端删除这条消息
+							li.parentNode.removeChild(li);
+						}
+					});
+				});
+			})(mui);
+		</script>
+	</body>
+
+</html>

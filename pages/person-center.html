@@ -9,9 +9,6 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
-			window.onload = function() { // 初始mui-content这个div的高度
-				document.getElementsByClassName("mui-content")[0].style.height = document.body.scrollHeight + 'px';
-			}
 		</script>
 		<style type="text/css">
 			html,
@@ -20,7 +17,6 @@
 			}
 			.head {
 				/*background: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(#00f));渐变色*/
-				
 				background-color: #65C2EB;
 			}
 			.body {
@@ -57,7 +53,7 @@
 				text-align: center;
 				border: 1px solid #ccc;
 				border-top: none;
-				box-shadow: 2px 2px 3px #ccc;
+				box-shadow: 1px 1px 2px #ccc,-1px -1px 2px #ddd;
 			}
 			.mui-grid-view.mui-grid-9 {
 				background-color: #fff;

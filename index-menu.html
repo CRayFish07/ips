@@ -73,8 +73,8 @@
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right" href="pages/show-when-nocv.html">
-						&nbsp;&nbsp;&nbsp;&nbsp;<i class="mui-icon mui-icon-email"></i>&nbsp;&nbsp;我的消息 <span class="mui-badge mui-badge-primary">13</span></a>
+					<a class="mui-navigate-right" href="pages/messages.html">
+						&nbsp;&nbsp;&nbsp;&nbsp;<i class="mui-icon mui-icon-email"></i>&nbsp;&nbsp;我的消息 <span class="mui-badge mui-badge-primary">2</span></a>
 					</a>
 				</li>
 			</ul>
@@ -94,12 +94,16 @@
 			 mui('.mui-table-view').on('tap', 'a', function() {
 				var href = this.href;
 				var title = this.innerText.trim();
-				if(title.indexOf("我的消息")>=0){//祛除尾部的数字
+				var showMenu = false;
+				if(~title.indexOf("我的消息")){//祛除尾部的数字
 					title="我的消息";
 				}
-				if(title.indexOf("所有职位")>=0){
+				if(~title.indexOf("所有职位")){
 					close();
 					return;
+				}
+				if(~title.indexOf("简历中心")){
+					showMenu = true;
 				}
 				template = plus.webview.getWebviewById("default-main");
 				//获得共用子webview
@@ -107,7 +111,7 @@
 				//通知模板修改标题，并显示隐藏右上角图标；
 				mui.fire(template, 'updateHeader', {
 					title: title,
-					showMenu: false
+					showMenu: showMenu
 				});
 				if (subWebview.getURL() != href) {
 					subWebview.loadURL(href);
