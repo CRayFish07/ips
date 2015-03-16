@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+		.mui-content>.mui-table-view:first-child {
+				margin-top: 0;
+			}
+			#job-title {
+				color: #555;
+				float: left;
+				font-weight: bold;
+				max-width: 75%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap
+			}
+			#pay {
+				float: right;
+				color: #ff6501;
+				max-width: 25%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap
+			}
+			#company-name {
+				font-weight: 300;
+				color: #888;
+				font-size: 15px;
+				max-width: 70%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap
+			}
+			#loc {
+				float: right;
+				color: #999;
+				font-size: 14px;
+				max-width: 30%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap
+			}
+			.mui-table-view-chevron .mui-table-view-cell {
+				padding-right: 15px;
+			}
+			#list {
+				/*避免导航边框和列表背景边框重叠，看起来像两条边框似得；*/
+				margin-top: -1px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<ul id="message-list" class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<div class="mui-table">
+							<span id="job-title">数据库工程师</span>
+							<span id="pay">8000</span><br />
+							<span id="company-name">文思海辉科技有限公司</span>
+							<span id="loc">上海-静安区</span>
+						</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<div class="mui-table">
+							<span id="job-title">数据库工程师</span>
+							<span id="pay">8000</span><br />
+							<span id="company-name">文思海辉科技有限公司</span>
+							<span id="loc">上海-静安区</span>
+						</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<div class="mui-table">
+							<span id="job-title">数据库工程师</span>
+							<span id="pay">8000</span><br />
+							<span id="company-name">文思海辉科技有限公司</span>
+							<span id="loc">上海-静安区</span>
+						</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<div class="mui-table">
+							<span id="job-title">数据库工程师</span>
+							<span id="pay">8000</span><br />
+							<span id="company-name">文思海辉科技有限公司</span>
+							<span id="loc">上海-静安区</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</body>
+
+</html>

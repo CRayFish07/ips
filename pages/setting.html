@@ -94,14 +94,14 @@
 				var title = null;
 				var href = this.href;
 				var innerText = this.innerText;
-				if (innerText.indexOf("退出") < 0) {
-					if (innerText.indexOf("分享") < 0) {
-						if (href.indexOf("person") > 0) {
+				if (!~innerText.indexOf("退出")) {
+					if (!~innerText.indexOf("分享")) {
+						if (~href.indexOf("person")) {
 							title = "个人中心";
 						} else {
 							title = innerText;
 						}
-						if (innerText.indexOf("意见") >= 0) {
+						if (~innerText.indexOf("意见")) {
 							mui.openWindow({
 								url: href,
 								waiting: {

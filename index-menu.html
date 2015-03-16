@@ -78,31 +78,26 @@
 					</a>
 				</li>
 			</ul>
-				<button type="button" class="mui-btn mui-btn-link setting">
-					<span class="mui-icon mui-icon-gear" style="font-size: 26px;"></span>
-				</button>
+			<button type="button" class="mui-btn mui-btn-link setting">
+				<span class="mui-icon mui-icon-gear" style="font-size: 26px;"></span>
+			</button>
 		</div>
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			var subWebview = null,
-				template = null,
-				index = null;
-			mui.plusReady(function() {
-				//获得主页面webview引用；
-				index = plus.webview.currentWebview().opener();
-			})
-			 mui('.mui-table-view').on('tap', 'a', function() {
+				template = null;
+			mui('.mui-table-view').on('tap', 'a', function() {
 				var href = this.href;
 				var title = this.innerText.trim();
 				var showMenu = false;
-				if(~title.indexOf("我的消息")){//祛除尾部的数字
-					title="我的消息";
+				if (~title.indexOf("我的消息")) { //祛除尾部的数字
+					title = "我的消息";
 				}
-				if(~title.indexOf("所有职位")){
+				if (~title.indexOf("所有职位")) {
 					close();
 					return;
 				}
-				if(~title.indexOf("简历中心")){
+				if (~title.indexOf("简历中心")) {
 					showMenu = true;
 				}
 				template = plus.webview.getWebviewById("default-main");
@@ -142,7 +137,6 @@
 					close();
 				}
 			});
-			
 			/**打开设置*/
 			document.querySelector(".setting").addEventListener('tap', function() {
 				mui.openWindow({

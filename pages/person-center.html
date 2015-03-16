@@ -97,7 +97,7 @@
 					<ul class="mui-table-view mui-grid-view mui-grid-9" style="margin-bottom: 20px;">
 						<br />
 						<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-2">
-							<a href="#">
+							<a href="apply.html">
 								<span class="mui-icon mui-icon-paperplane"></span>
 								<div class="mui-media-body">已申请</div>
 							</a>
@@ -109,9 +109,9 @@
 							</a>
 						</li>
 						<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-2">
-							<a href="#">
+							<a href="messages.html">
 								<span class="mui-icon mui-icon-email"></span>
-								<div class="mui-media-body">消息</div>
+								<div class="mui-media-body">我的消息</div>
 							</a>
 						</li>
 						<br />
@@ -122,7 +122,7 @@
 							</a>
 						</li>
 						<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-2">
-							<a href="#">
+							<a href="job-collection.html">
 								<span class="mui-icon mui-icon-star"></span>
 								<div class="mui-media-body">我的收藏</div>
 							</a>
@@ -140,12 +140,33 @@
 			</div>
 		</div>
 		<script type="text/javascript">
+			/*菜单按钮*/
+			var subWebview = null,
+				template = null;
+			 mui('.mui-table-view').on('tap', 'a', function() {
+				var href = this.href;
+				var title = this.innerText.trim();
+				template = plus.webview.getWebviewById("sub-main");
+				//获得共用子webview
+				subWebview = template.children()[0];
+				//通知模板修改标题，并显示隐藏右上角图标；
+				mui.fire(template, 'updateHeader', {
+					title: title,
+					showMenu: false
+				});
+				if (subWebview.getURL() != href) {
+					subWebview.loadURL(href);
+				} else {
+					subWebview.show();
+				}
+				template.show('slide-in-right', 200);
+			});
 			document.querySelector(".signature").addEventListener('tap', function() {
 				mui.openWindow({
 					url: 'edit-signature.html',
 					show: {
 						aniShow: 'slide-in-right', //页面显示动画，默认为”slide-in-right“
-						duration: 300 //页面动画持续时间
+						duration: 200 //页面动画持续时间
 					},
 					waiting: {
 						autoShow: false
