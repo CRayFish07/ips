@@ -11,52 +11,47 @@
 		<script src="js/mui.min.js"></script>
 		<script src="js/app.js"></script>
 		<style type="text/css">
+			#job-title,#pay,#company-name,#loc{
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap
+			}
+			#company-name,#loc{
+				line-height:35px;
+				color: #888;
+			}
 			#job-title {
 				color: #555;
 				float: left;
 				font-weight: bold;
-				max-width: 75%;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap
+				max-width: 80%;
+				
 			}
 			#pay {
 				float: right;
 				color: #ff6501;
-				max-width: 25%;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap
+				max-width: 20%;
 			}
 			#company-name {
 				font-weight: 300;
-				color: #888;
+				float: left;
 				font-size: 15px;
-				position: absolute;
-				left: 15px;
-				bottom: 5px;
-				max-width: 70%;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap
+				max-width: 66%;
 			}
 			#loc {
-				color: #999;
-				font-size: 14px;
-				position: absolute;
-				right: 15px;
-				bottom: 5px;
-				max-width: 30%;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap
+				font-size: 15px;
+				float: right;
+				max-width: 34%;
 			}
 			.mui-table-view-chevron .mui-table-view-cell {
 				padding-right: 15px;
 			}
+			.mui-table-view-cell{
+				padding-top: 7px;
+				padding-bottom: 0;
+			}
 			#list {
 				/*避免导航边框和列表背景边框重叠，看起来像两条边框似得；*/
-				
 				margin-top: -1px;
 			}
 		</style>
@@ -70,7 +65,6 @@
 						<span id="job-title">数据库工程师</span>
 						<span id="pay">8000</span>
 						<br />
-						<br />
 						<span id="company-name">文思海辉科技有限公司</span>
 						<span id="loc">上海-静安区</span>
 					</div>
@@ -79,7 +73,6 @@
 					<div>
 						<span id="job-title">高级前端WEB工程师 Front End Developer</span>
 						<span id="pay">20000</span>
-						<br />
 						<br />
 						<span id="company-name">舒锐贝蒙经济信息咨询(上海)有限公司</span>
 						<span id="loc">上海</span>
@@ -90,7 +83,6 @@
 						<span id="job-title">JS前端工程师</span>
 						<span id="pay">6000</span>
 						<br />
-						<br />
 						<span id="company-name">上海申诺伟国际物流有限公司</span>
 						<span id="loc">上海-浦东新区</span>
 					</div>
@@ -99,7 +91,6 @@
 					<div>
 						<span id="job-title">移动终端开发工程师(职位编号：FZ05)</span>
 						<span id="pay">面议</span>
-						<br />
 						<br />
 						<span id="company-name">上海酆泽信息技术有限公司  </span>
 						<span id="loc">广州-天河区</span>
@@ -110,7 +101,6 @@
 						<span id="job-title">IOS开发工程师（江苏南通）</span>
 						<span id="pay">面议</span>
 						<br />
-						<br />
 						<span id="company-name">江苏睿博信息科技有限公司  </span>
 						<span id="loc">上海</span>
 					</div>
@@ -119,7 +109,6 @@
 					<div>
 						<span id="job-title">JAVA支付技术经理</span>
 						<span id="pay">7500</span>
-						<br />
 						<br />
 						<span id="company-name">上海申诺伟国际物流有限公司  </span>
 						<span id="loc">上海-静安</span>
@@ -130,6 +119,14 @@
 						<span id="job-title">JAVA开发主管（上海-闸北）</span>
 						<span id="pay">面议</span>
 						<br />
+						<span id="company-name">文思海辉科技有限公司</span>
+						<span id="loc">上海-静安</span>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div>
+						<span id="job-title">JAVA开发主管（上海-闸北）</span>
+						<span id="pay">面议</span>
 						<br />
 						<span id="company-name">文思海辉科技有限公司</span>
 						<span id="loc">上海-静安</span>
@@ -140,7 +137,6 @@
 						<span id="job-title">JAVA开发主管（上海-闸北）</span>
 						<span id="pay">面议</span>
 						<br />
-						<br />
 						<span id="company-name">文思海辉科技有限公司</span>
 						<span id="loc">上海-静安</span>
 					</div>
@@ -150,7 +146,6 @@
 						<span id="job-title">JAVA开发主管（上海-闸北）</span>
 						<span id="pay">面议</span>
 						<br />
-						<br />
 						<span id="company-name">文思海辉科技有限公司</span>
 						<span id="loc">上海-静安</span>
 					</div>
@@ -159,17 +154,6 @@
 					<div>
 						<span id="job-title">JAVA开发主管（上海-闸北）</span>
 						<span id="pay">面议</span>
-						<br />
-						<br />
-						<span id="company-name">文思海辉科技有限公司</span>
-						<span id="loc">上海-静安</span>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div>
-						<span id="job-title">JAVA开发主管（上海-闸北）</span>
-						<span id="pay">面议</span>
-						<br />
 						<br />
 						<span id="company-name">文思海辉科技有限公司</span>
 						<span id="loc">上海-静安</span>
