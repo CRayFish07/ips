@@ -64,6 +64,9 @@
 			.info h5 span {
 				padding-left: 30px;
 			}
+			.mui-content{
+				margin-top: -2px;
+			}
 		</style>
 	</head>
 
@@ -111,6 +114,17 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+			document.querySelector(".mui-btn").addEventListener('tap',function(){
+				mui.openWindow({
+					url: 'edit-cvs.html',
+					show: {
+						aniShow: 'slide-in-right',
+						duration: 100 //页面动画持续时间
+					}
+				});
+			});
+		</script>
 	</body>
 
 </html>
