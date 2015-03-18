@@ -92,7 +92,7 @@
 			<div class="body">
 				<div class="info">
 					<h5 style="font-weight: 700; color: #333; font-size: 16px;padding-left: 5px;">求职意向</h5>
-					<a href="#" class="mui-icon mui-icon-compose mui-pull-right mui-hidden" style="margin-top: -35px;"></a>
+					<a id="job-intent" href="apply.html" class="mui-icon mui-icon-compose mui-pull-right mui-hidden" style="margin-top: -35px;"></a>
 					<h5>到岗时间<span>一周以内</span></h5>
 					<h5>工作性质<span>全职</span></h5>
 					<h5>目标地点<span>上海</span></h5>
@@ -101,7 +101,7 @@
 				</div>
 				<div class="info">
 					<h5 style="font-weight: 700; color: #333; font-size: 16px;padding-left: 5px;">教育背景</h5>
-					<a href="#" class="mui-icon mui-icon-compose mui-pull-right mui-hidden" style="margin-top: -35px;"></a>
+					<a id="jedu-back" href="#" class="mui-icon mui-icon-compose mui-pull-right mui-hidden" style="margin-top: -35px;"></a>
 					<h5>学校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>南京林业大学</span></h5>
 					<h5>专业类别<span>计算机类</span></h5>
 					<h5>专业名称<span>网络工程</span></h5>
@@ -110,7 +110,7 @@
 				</div>
 				<div class="info">
 					<h5 style="font-weight: 700; color: #333; font-size: 16px;padding-left: 5px;">工作经历</h5>
-					<a href="#" class="mui-icon mui-icon-compose mui-pull-right mui-hidden" style="margin-top: -35px;"></a>
+					<a id="work-exp" href="#" class="mui-icon mui-icon-compose mui-pull-right mui-hidden" style="margin-top: -35px;"></a>
 					<h5>时间&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>3013/10--2014/02</span></h5>
 					<h5>公司名称<span>南京森云有限公司</span></h5>
 					<h5>行业类别<span>计算机软件</span></h5>
@@ -122,7 +122,6 @@
 		<script type="text/javascript">
 			document.querySelector(".mui-btn").addEventListener('tap', function() {
 				var innerText = this.innerText;
-				console.log(innerText);
 				if (~innerText.indexOf("编辑")) {
 					this.innerText = "完成";
 					mui('.info a').each(function() {
@@ -134,6 +133,40 @@
 						this.classList.add("mui-hidden");
 					});
 				}
+			});
+			var subWebview = null,
+				title = null,
+				template = null;
+			mui('.info').on('tap', 'a', function() {
+				var href = this.href;
+				switch (this.id) {
+					case "job-intent":
+						title = "求职意向";
+						break;
+					case "edu-back":
+						title = "教育背景";
+						break;
+					case "work-exp":
+						title = "工作经历";
+						break;
+					default:
+						break;
+				}
+				
+				template = plus.webview.getWebviewById("cv-center-main");
+				//获得共用子webview
+				subWebview = template.children()[0];
+				//通知模板修改标题，并显示隐藏右上角图标；
+				mui.fire(template, 'updateHeader', {
+					title: title,
+					showMenu: showMenu
+				});
+				if (subWebview.getURL() != href) {
+					subWebview.loadURL(href);
+				} else {
+					subWebview.show();
+				}
+				template.show('slide-in-right', 150);
 			});
 		</script>
 	</body>

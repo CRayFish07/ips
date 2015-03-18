@@ -87,6 +87,9 @@
 				<h4 class="mui-text-center" style="color: #fff;">龚训瑶</h4>
 				<img id="photo" src="../img/usr_unlogin.jpg" />
 				<hr />
+				<div class="edit-panel" style="position: absolute;top: 10px; right: 5px;">
+					<button class="mui-btn mui-btn-danger">编辑</button>
+				</div>
 			</div>
 			<div class="body">
 				<div class="signature">
@@ -147,7 +150,7 @@
 			 mui('.mui-table-view').on('tap', 'a', function() {
 				var href = this.href;
 				var title = this.innerText.trim();
-				template = plus.webview.getWebviewById("sub-main");
+				template = plus.webview.getWebviewById("person-center-main");
 				//获得共用子webview
 				subWebview = template.children()[0];
 				//通知模板修改标题，并显示隐藏右上角图标；
