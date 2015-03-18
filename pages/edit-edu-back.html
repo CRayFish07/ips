@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.edit {
+				width: 100%;
+				padding: 5px;
+				border: 1px solid #ccc;
+				background-color: #fff;
+				box-shadow: 1px 1px 2px #ccc, -1px -1px 2px #ddd;
+				border-radius: 5px;
+			}
+			.mui-content {
+				padding: 5px;
+			}
+			.mui-input-row label {
+				color: #555;
+				display: inline;
+				padding: 0;
+				margin-top: 12px;
+			}
+			.mui-input-row {
+				margin-top: 15px;
+			}
+			.mui-input-row label~input,
+			.mui-input-row label~select {
+				border-bottom: 1px solid #bbb;
+				border-radius: 0;
+				float: left;
+				margin-left: 5%;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="edit">
+				<div class="mui-input-row">
+					<label>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;校</label>
+					<input type="text" name="school" class="mui-input-clear">
+				</div>
+				<div class="mui-input-row">
+					<label>专业类别</label>
+					<input type="text" name="majorClass" class="mui-input-clear">
+				</div>
+
+				<div class="mui-input-row">
+					<label>专业名称</label>
+					<input type="text" name="majorName" class="mui-input-clear">
+				</div>
+				<div class="mui-input-row">
+					<label>入学时间</label>
+					<input type="date" name="time">
+				</div>
+				<div class="mui-input-row">
+					<label>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历</label>
+					<select name="degree">
+						<option value="0">专科</option>
+						<option value="1" selected="selected">本科</option>
+						<option value="2">硕士</option>
+						<option value="3">博士</option>
+						<option value="4">其他</option>
+					</select>
+				</div>
+				<button class="mui-btn mui-btn-primary mui-btn-block" style="padding: 7px; font-weight: 600; margin-top: 30px;">保存</button>
+			</div>
+		</div>
+		<script type="text/javascript">
+			mui.init();
+		</script>
+	</body>
+
+</html>

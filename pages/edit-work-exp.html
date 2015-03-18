@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.edit {
+				width: 100%;
+				padding: 5px;
+				border: 1px solid #ccc;
+				background-color: #fff;
+				box-shadow: 1px 1px 2px #ccc, -1px -1px 2px #ddd;
+				border-radius: 5px;
+			}
+			.mui-content {
+				padding: 5px;
+			}
+			.mui-input-row label {
+				color: #555;
+				display: inline;
+				padding: 0;
+				margin-top: 12px;
+			}
+			.mui-input-row {
+				margin-top: 15px;
+			}
+			.mui-input-row label~input,
+			.mui-input-row label~select,.mui-input-row label~textarea {
+				border-bottom: 1px solid #bbb;
+				border-radius: 0;
+				float: left;
+				margin-left: 5%;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="edit">
+				<div class="mui-input-row">
+					<label>开始时间</label>
+					<input type="date" name="startTime">
+				</div>
+				<div class="mui-input-row">
+					<label>结束时间</label>
+					<input type="date" name="endTime">
+				</div>
+
+				<div class="mui-input-row">
+					<label>公司名称</label>
+					<input type="text" name="compName" class="mui-input-clear">
+				</div>
+				<div class="mui-input-row">
+					<label>行业类别</label>
+					<input type="text" name="industry">
+				</div>
+				<div class="mui-input-row">
+					<label>公司规模</label>
+					<select name="scale">
+						<option value="0">1-99人</option>
+						<option value="1" selected="selected">100-499人</option>
+						<option value="2">500-999人</option>
+						<option value="3">1000-9999人</option>
+						<option value="4">10000人以上</option>
+					</select>
+				</div>
+				<div class="mui-input-row">
+					<label>工作描述</label>
+					<textarea name="descri" rows="4" style="padding: 0;text-align: left;margin-top: 10px;border-bottom: none;"></textarea>
+				</div>
+				<button class="mui-btn mui-btn-primary mui-btn-block" style="padding: 7px; font-weight: 600; margin-top: 30px;">保存</button>
+			</div>
+		</div>
+		<script type="text/javascript">
+			mui.init();
+		</script>
+	</body>
+
+</html>
