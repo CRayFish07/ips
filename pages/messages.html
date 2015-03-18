@@ -3,96 +3,110 @@
 
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<script src="../js/mui.min.js"></script>
-		<link href="../css/mui.min.css" rel="stylesheet" />
+
+		<link rel="stylesheet" href="../css/mui.min.css">
 		<style>
 			html,
 			body {
-				background-color: #efeff4;
-			}
-			.mui-content {
-				padding: 0;
-			}
-			.mui-content>.mui-table-view:first-child {
-				margin-top: 0;
-			}
-			.mui-table h5,
-			.mui-table .mui-h5,
-			.mui-table .mui-h6,
-			.mui-table p {
-				margin-top: 0;
-			}
-			.mui-table .oa-icon {
-				position: absolute;
-				right: 0;
-				bottom: 0;
+				background-color: #FFFFFF;
 			}
 			.mui-table-view-cell {
 				padding: 3px 15px;
-			}
-			.mui-table h4{
-				color: #777;
 			}
 		</style>
 	</head>
 
 	<body>
-		<div class="mui-content">
-			<ul id="message-list" class="mui-table-view">
-				<li class="mui-table-view-cell">
-					<div class="mui-slider-right mui-disabled">
-						<a class="mui-btn mui-btn-red">删除</a>
-					</div>
-					<div class="mui-slider-handle">
-						<div class="mui-table">
-							<div class="mui-table-cell mui-col-xs-10">
-								<h4 class="mui-ellipsis">面试邀请</h4>
-								<p class="mui-h5 mui-ellipsis">Hi，龚训瑶，您的简历我们已经收到，请您于今日抽出时间与我们联系，以便我们给您安排面试和笔试</p>
-							</div>
-							<div class="mui-table-cell mui-col-xs-2 mui-text-right">
-								<span class="mui-h5">12:25</span>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-slider-right mui-disabled">
-						<a class="mui-btn mui-btn-red">删除</a>
-					</div>
-					<div class="mui-slider-handle">
-						<div class="mui-table">
-							<div class="mui-table-cell mui-col-xs-10">
-								<h4 class="mui-ellipsis">offer</h4>
-								<p class="mui-h5 mui-ellipsis">Congratulations,Jarvan, you're good at java web and we hope you can join us</p>
-							</div>
-							<div class="mui-table-cell mui-col-xs-2 mui-text-right">
-								<span class="mui-h5">12:25</span>
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
+		<div id="messageContainer" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul class="mui-table-view mui-table-view-chevron">
+
+				</ul>
+			</div>
 		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
 		<script type="text/javascript">
 			mui.init({
-				swipeBack: false
+				swipeBack: false,
+				pullRefresh: {
+					container: "#messageContainer", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+					down: {
+						callback: pulldownRefresh
+					}
+				}
 			});
-			(function($) {
-				var btnArray = ['确认', '取消'];
-				$('#message-list').on('tap', '.mui-btn', function(event) {
-					var elem = this;
-					mui.confirm('确认删除该条消息？',btnArray, function(e) {
-						if (e.index == 0) {
-							var li = elem.parentNode.parentNode;
-							//在此处通知服务器端删除这条消息
-							li.parentNode.removeChild(li);
-						}
-					});
+			
+			/**
+			 * 创建包含信息预览的li标签
+			 * @param {Object} title 信息标题
+			 * @param {Object} content 信息类容
+			 * @param {Object} time 信息时间
+			 */
+			function createMessage(title,content,time){
+				
+				var divCell = document.createElement('div');
+				divCell.className = 'mui-table-cell mui-col-xs-10';
+				divCell.style.width = '100%';
+				divCell.innerHTML = '<h4 class="mui-ellipsis">'+title+'</h4><p class="mui-h5 mui-ellipsis">'+content+'</p>';
+				
+				var divTime = document.createElement('div');
+				divTime.className = 'mui-table-cell';
+				divTime.style.display = 'inline';
+				divTime.innerHTML = '<span class="mui-h5">'+time+'</span>';
+				
+				var divTable = document.createElement('div');
+				divTable.className = 'mui-table';
+				
+				divTable.appendChild(divCell);
+				divTable.appendChild(divTime);
+				
+				var divSlider = document.createElement('div');
+				divSlider.className = 'mui-slider-handle';
+				divSlider.appendChild(divTable);
+				
+				//删除按钮
+				var divBtn = document.createElement('div');
+				divBtn.className = 'mui-slider-right mui-disabled';
+				divBtn.innerHTML = '<a class="mui-btn mui-btn-red">删除</a>';
+				
+				var li = document.createElement('li');
+				li.className = 'mui-table-view-cell';
+				li.appendChild(divBtn);
+				li.appendChild(divSlider);
+				
+				return li;
+				
+			}
+			function pulldownRefresh() {
+				//业务逻辑代码，比如通过ajax从服务器获取新数据；
+				setTimeout(function() {
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for (var i = cells.length, len = i + 5; i < len; i++) {
+						
+						var li = createMessage('面试邀请','Hi，龚训瑶，您的简历我们已经收到，请您于今日抽出时间与我们联系，以便我们给您安排面试和笔试', '12:25');						
+						//下拉刷新，新纪录插到最前面；
+						table.insertBefore(li, table.firstChild);
+					}
+					//注意，加载完新数据后，必须执行如下代码，注意：若为ajax请求，则需将如下代码放置在处理完ajax响应数据之后
+					mui('#messageContainer').pullRefresh().endPulldownToRefresh();
+				}, 100);
+			} 
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+					mui('#messageContainer').pullRefresh().pulldownLoading();
 				});
-			})(mui);
+			} else {
+				mui.ready(function() {
+					mui('#messageContainer').pullRefresh().pulldownLoading();
+				});
+			}
 		</script>
 	</body>
 
