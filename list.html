@@ -11,13 +11,17 @@
 		<script src="js/mui.min.js"></script>
 		<script src="js/app.js"></script>
 		<style type="text/css">
-			#job-title,#pay,#company-name,#loc{
+			#job-title,
+			#pay,
+			#company-name,
+			#loc {
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap
 			}
-			#company-name,#loc{
-				line-height:35px;
+			#company-name,
+			#loc {
+				line-height: 35px;
 				color: #888;
 			}
 			#job-title {
@@ -25,7 +29,6 @@
 				float: left;
 				font-weight: bold;
 				max-width: 80%;
-				
 			}
 			#pay {
 				float: right;
@@ -46,12 +49,13 @@
 			.mui-table-view-chevron .mui-table-view-cell {
 				padding-right: 15px;
 			}
-			.mui-table-view-cell{
+			.mui-table-view-cell {
 				padding-top: 7px;
 				padding-bottom: 0;
 			}
-			#list {
+			#job-list {
 				/*避免导航边框和列表背景边框重叠，看起来像两条边框似得；*/
+				
 				margin-top: -1px;
 			}
 		</style>
@@ -59,104 +63,14 @@
 
 	<body>
 		<div class="mui-content">
-			<ul id="list" class="mui-table-view mui-table-view-chevron">
-				<li class="mui-table-view-cell">
+			<ul id="job-list" class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell" id="0">
 					<div>
 						<span id="job-title">数据库工程师</span>
 						<span id="pay">8000</span>
 						<br />
 						<span id="company-name">文思海辉科技有限公司</span>
 						<span id="loc">上海-静安区</span>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div>
-						<span id="job-title">高级前端WEB工程师 Front End Developer</span>
-						<span id="pay">20000</span>
-						<br />
-						<span id="company-name">舒锐贝蒙经济信息咨询(上海)有限公司</span>
-						<span id="loc">上海</span>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div>
-						<span id="job-title">JS前端工程师</span>
-						<span id="pay">6000</span>
-						<br />
-						<span id="company-name">上海申诺伟国际物流有限公司</span>
-						<span id="loc">上海-浦东新区</span>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div>
-						<span id="job-title">移动终端开发工程师(职位编号：FZ05)</span>
-						<span id="pay">面议</span>
-						<br />
-						<span id="company-name">上海酆泽信息技术有限公司  </span>
-						<span id="loc">广州-天河区</span>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div>
-						<span id="job-title">IOS开发工程师（江苏南通）</span>
-						<span id="pay">面议</span>
-						<br />
-						<span id="company-name">江苏睿博信息科技有限公司  </span>
-						<span id="loc">上海</span>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div>
-						<span id="job-title">JAVA支付技术经理</span>
-						<span id="pay">7500</span>
-						<br />
-						<span id="company-name">上海申诺伟国际物流有限公司  </span>
-						<span id="loc">上海-静安</span>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div>
-						<span id="job-title">JAVA开发主管（上海-闸北）</span>
-						<span id="pay">面议</span>
-						<br />
-						<span id="company-name">文思海辉科技有限公司</span>
-						<span id="loc">上海-静安</span>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div>
-						<span id="job-title">JAVA开发主管（上海-闸北）</span>
-						<span id="pay">面议</span>
-						<br />
-						<span id="company-name">文思海辉科技有限公司</span>
-						<span id="loc">上海-静安</span>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div>
-						<span id="job-title">JAVA开发主管（上海-闸北）</span>
-						<span id="pay">面议</span>
-						<br />
-						<span id="company-name">文思海辉科技有限公司</span>
-						<span id="loc">上海-静安</span>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div>
-						<span id="job-title">JAVA开发主管（上海-闸北）</span>
-						<span id="pay">面议</span>
-						<br />
-						<span id="company-name">文思海辉科技有限公司</span>
-						<span id="loc">上海-静安</span>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div>
-						<span id="job-title">JAVA开发主管（上海-闸北）</span>
-						<span id="pay">面议</span>
-						<br />
-						<span id="company-name">文思海辉科技有限公司</span>
-						<span id="loc">上海-静安</span>
 					</div>
 				</li>
 			</ul>
@@ -224,64 +138,30 @@
 				getTemplate('cv-center', 'pages/cv-center-template.html');
 			};
 			mui.plusReady(function() {
-				//初始化模板
-				initTemplates(); //预加载所有模板	
+				//预加载所有模板	
+				initTemplates();
 				//关闭splash页面；
 				plus.navigator.closeSplashscreen();
 			});
 			 //主列表点击事件
-			mui('#list').on('tap', 'a', function() {
-				var id = this.getAttribute('href');
-				if (id && ~id.indexOf('.html')) {
-					var href = this.href;
-					//获得共用模板组
-					var template = getTemplate('default');
-					//获得共用父模板
-					var headerWebview = template.header;
-					//获得共用子webview
-					var contentWebview = template.content;
-					var title = this.innerText.trim();
-					//通知模板修改标题，并显示隐藏右上角图标；
-					mui.fire(headerWebview, 'updateHeader', {
-						title: title,
-						showMenu: true
-					});
-					var reload = true;
-					if (!template.loaded) {
-						if (contentWebview.getURL() != this.href) {
-							contentWebview.loadURL(this.href);
-						} else {
-							reload = false;
-						}
-					} else {
-						reload = false;
+			mui('#job-list').on('tap', 'li', function() {
+				var jobId = this.getAttribute('id');
+				mui.openWindow({
+					id: 'job-details',
+					url: 'pages/job-details.html',
+					extras: {
+						jobId: jobId
+					},
+					waiting: {
+						title:'正在加载...'	
 					}
-					(!reload) && contentWebview.show();
-					headerWebview.show('slide-in-right', 150);
-				}
+				});
 			});
 			var index = null; //主页面
 			function openMenu() {
-					!index && (index = mui.currentWebview.parent());
-					mui.fire(index, "menu:open");
-				}
-				//在android4.4.2中的swipe事件，需要preventDefault一下，否则触发不正常
-			window.addEventListener('dragstart', function(e) {
-				mui.gestures.touch.lockDirection = true; //锁定方向
-				mui.gestures.touch.startDirection = e.detail.direction;
-			});
-			window.addEventListener('dragright', function(e) {
-				if (!mui.isScrolling) {
-					e.detail.gesture.preventDefault();
-				}
-			});
-			 //监听右滑事件，若侧滑菜单未显示，右滑要显示菜单；
-			window.addEventListener("swiperight", function(e) {
-				//默认滑动角度在-45度到45度之间，都会触发右滑菜单，为避免误操作，可自定义限制滑动角度；
-				if (Math.abs(e.detail.angle) < 18) {//现在是180/18=10度
-					openMenu();
-				}
-			});
+				!index && (index = mui.currentWebview.parent());
+				mui.fire(index, "menu:open");
+			}
 		</script>
 	</body>
 
