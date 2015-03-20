@@ -96,7 +96,7 @@
 					}
 					//注意，加载完新数据后，必须执行如下代码，注意：若为ajax请求，则需将如下代码放置在处理完ajax响应数据之后
 					mui('#messageContainer').pullRefresh().endPulldownToRefresh();
-				}, 100);
+				}, 1000);
 			} 
 			if (mui.os.plus) {
 				mui.plusReady(function() {
@@ -107,6 +107,20 @@
 					mui('#messageContainer').pullRefresh().pulldownLoading();
 				});
 			}
+			
+			(function($) {
+				var btnArray = ['确认', '取消'];
+				$('#messageContainer').on('tap', '.mui-btn', function(event) {
+					var elem = this;
+					mui.confirm('确认删除该条消息？',btnArray, function(e) {
+						if (e.index == 0) {
+							var li = elem.parentNode.parentNode;
+							//在此处通知服务器端删除这条消息
+							li.parentNode.removeChild(li);
+						}
+					});
+				});
+			})(mui);
 		</script>
 	</body>
 
