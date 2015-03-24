@@ -3,13 +3,10 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>Hello MUI</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="stylesheet" href="css/mui.min.css">
-		<script src="js/mui.min.js"></script>
-		<script src="js/app.js"></script>
 		<style type="text/css">
 			#job-title,
 			#pay,
@@ -54,8 +51,6 @@
 				padding-bottom: 0;
 			}
 			#job-list {
-				/*避免导航边框和列表背景边框重叠，看起来像两条边框似得；*/
-				
 				margin-top: -1px;
 			}
 		</style>
@@ -73,11 +68,30 @@
 						<span id="loc">上海-静安区</span>
 					</div>
 				</li>
+				<li class="mui-table-view-cell" id="1">
+					<div>
+						<span id="job-title">数据库工程师</span>
+						<span id="pay">8000</span>
+						<br />
+						<span id="company-name">文思海辉科技有限公司</span>
+						<span id="loc">上海-静安区</span>
+					</div>
+				</li>
+				<li class="mui-table-view-cell" id="2">
+					<div>
+						<span id="job-title">数据库工程师</span>
+						<span id="pay">8000</span>
+						<br />
+						<span id="company-name">文思海辉科技有限公司</span>
+						<span id="loc">上海-静安区</span>
+					</div>
+				</li>
 			</ul>
 		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
 		<script>
 			mui.init({
-				preloadLimit: 6, //同时并存的预加载窗口数量
 				swipeBack: false,
 				keyEventBind: {
 					backbutton: false
@@ -89,24 +103,24 @@
 				if (!template) {
 					//预加载共用父模板；
 					var headerWebview = mui.preload({
-						url: header,
-						id: name + "-main",
-						styles: {
-							popGesture: "hide",
+						url:header,
+						id:name+"-main",
+						styles:{
+							popGesture:"hide"
 						},
-						extras: {
+						extras:{
 							mType: 'main'
 						}
 					});
 					//预加载共用子webview
 					var subWebview = mui.preload({
-						url: !content ? "" : content,
-						id: name + "-sub",
-						styles: {
+						url:!content?"":content,
+						id:name+"-sub",
+						styles:{
 							top: '45px',
-							bottom: '0px',
+							bottom: '0px'
 						},
-						extras: {
+						extras:{
 							mType: 'sub'
 						}
 					});
@@ -117,6 +131,7 @@
 					});
 					subWebview.hide();
 					headerWebview.append(subWebview);
+
 					//iOS平台支持侧滑关闭，父窗体侧滑隐藏后，同时需要隐藏子窗体；
 					if (mui.os.ios) { //5+父窗体隐藏，子窗体还可以看到？不符合逻辑吧？
 						headerWebview.addEventListener('hide', function() {
@@ -130,33 +145,37 @@
 						loaded: loading
 					};
 				}
+				
 				return template;
 			};
-			var initTemplates = function() {
-				getTemplate('default', 'pages/template.html');
-				getTemplate('person-center', 'pages/person-center-template.html');
-				getTemplate('cv-center', 'pages/cv-center-template.html');
-			};
+			
 			mui.plusReady(function() {
-				//预加载所有模板	
-				initTemplates();
-				//关闭splash页面；
+				//预加载主模板	
+				getTemplate('default', 'pages/template.html');
+				//关闭splash页面
 				plus.navigator.closeSplashscreen();
 			});
 			 //主列表点击事件
 			mui('#job-list').on('tap', 'li', function() {
 				var jobId = this.getAttribute('id');
-				mui.openWindow({
-					id: 'job-details',
-					url: 'pages/job-details.html',
-					extras: {
-						jobId: jobId
-					},
-					waiting: {
-						title:'正在加载...'	
-					}
+				var template = getTemplate("default");
+				var headerWebview = template.header;
+				//获得共用子webview
+				var contentWebview = template.content;
+				mui.fire(headerWebview, 'updateHeader', {
+					title: "",
+					showMenu: false
 				});
+
+				contentWebview.loadURL("pages/job-details.html");
+				//将jobId作为参数传递 到子页面
+				mui.fire(contentWebview, 'passArgs', {
+					jobId:jobId
+				});
+				contentWebview.show();
+				headerWebview.show('fade-in', 150);
 			});
+			
 			var index = null; //主页面
 			function openMenu() {
 				!index && (index = mui.currentWebview.parent());

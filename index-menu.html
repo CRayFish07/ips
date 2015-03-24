@@ -3,7 +3,6 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>Hello MUI</title>
 		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -77,12 +76,15 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;<i class="mui-icon mui-icon-email"></i>&nbsp;&nbsp;我的消息 <span class="mui-badge mui-badge-primary">2</span></a>
 					</a>
 				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="pages/setting.html">
+						&nbsp;&nbsp;&nbsp;&nbsp;<i class="mui-icon mui-icon-gear"></i>&nbsp;&nbsp;设置</a>
+					</a>
+				</li>
 			</ul>
-			<button type="button" class="mui-btn mui-btn-link setting">
-				<span class="mui-icon mui-icon-gear" style="font-size: 26px;"></span>
-			</button>
 		</div>
 		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			var subWebview = null,
 				template = null;
@@ -137,16 +139,7 @@
 					close();
 				}
 			});
-			/**打开设置*/
-			document.querySelector(".setting").addEventListener('tap', function() {
-				mui.openWindow({
-					url: 'pages/setting.html',
-					show: {
-						aniShow: 'slide-in-right',
-						duration: 100 //页面动画持续时间
-					}
-				});
-			});
+			
 			/**立即登录*/
 			document.querySelector("#login").addEventListener('tap', function() {
 				mui.openWindow({

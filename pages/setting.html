@@ -6,9 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
 		<link rel="stylesheet" href="../css/mui.min.css">
-		<script src="../js/mui.min.js"></script>
 		<style>
 			html,
 			body {
@@ -21,10 +19,6 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">设置</h1>
-		</header>
 		<div class="mui-content">
 			<ul class="mui-table-view menu" style="margin: 20px 0">
 				<li class="mui-table-view-cell mui-media">
@@ -82,7 +76,10 @@
 				</li>
 			</ul>
 		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
 		<script type="text/javascript">
+			mui.init();
 			 //退出登录
 			document.querySelector("#logoff").addEventListener('tap', function() {
 				plus.nativeUI.showWaiting("正在注销");
@@ -138,6 +135,7 @@
 				//根据点击按钮，反推当前是哪个actionsheet
 				for (parent = a.parentNode; parent != document.body; parent = parent.parentNode) {
 					if (parent.classList.contains('mui-popover-action')) {
+						shareAction('weixin', 'WXSceneTimeline');
 						break;
 					}
 				}
@@ -145,6 +143,65 @@
 				mui('#' + parent.id).popover('toggle');
 				mui.toast("\"" + a.innerText + "\"功能正在紧急修复");
 			});
+			
+			var shares = null;
+			var sharecontent = '我爱你',
+				sharehref = 'http://img5.tvsou.com/forenotice_images/20140804/2014-08-04-04-34-05.jpg',
+				sharetitle = '我正在测试微信分享功能',
+				sharepic = 'http://img5.tvsou.com/forenotice_images/20140804/2014-08-04-04-34-05.jpg';
+			mui.plusReady(function() {
+				plus.share.getServices(function(s) {
+					shares = {};
+					for (var i in s) {
+						var t = s[i];
+						shares[t.id] = t;
+					}
+				}, function(e) {
+					mui.toast("获取分享服务列表失败：" + e.message);
+				});
+			});
+
+			function shareMessage(id, s, ex) {
+				if (id == 'weixin') {
+					var msg = {
+						title: sharetitle,
+						href: sharehref,
+						extra: {
+							scene: ex
+						}
+					};
+				} else {
+					var msg = {
+						content: sharecontent,
+						extra: {
+							scene: ex
+						}
+					};
+				}
+				s.send(msg, function() {
+					mui.toast('分享成功');
+				}, function(e) {
+					mui.toast('分享失败，错误信息，' + e.message)
+				});
+			}
+
+			function shareAction(id, ex) {
+				var s = null;
+				if (!id || !(s = shares[id])) {
+					mui.toast("无效的分享服务！");
+					return;
+				}
+				if (s.authenticated) {
+					shareMessage(id, s, ex);
+				} else {
+					mui.toast("未授权");
+					s.authorize(function() {
+						shareMessage(id, s, ex);
+					}, function(e) {
+						mui.toast("认证授权失败：" + e.code + " - " + e.message);
+					});
+				}
+			}
 		</script>
 	</body>
 

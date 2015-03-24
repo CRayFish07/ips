@@ -58,6 +58,10 @@
 	</head>
 
 	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="font-size: 18px;line-height: 28px;">返回</a>
+			<h1 class="mui-title" style="font-weight: 600;">已申请</h1>
+		</header>
 		<div class="mui-content">
 			<div class="base">
 
@@ -169,19 +173,19 @@
 		<script src="../js/app.js"></script>
 		<script type="text/javascript">
 			mui.init();
-			var jobId = null;
-			window.addEventListener('passArgs', function(e) {
-				jobId = e.detail.jobId;
-				alert(jobId);
+			var self = null;
+			mui.plusReady(function(){
+				self = plus.webview.currentWebview();
+				alert(self.applyId);
 			});
 			 //ajax从服务器加载
 			 //根据id向服务器请求新闻详情
 			 //业务数据获取完毕，并已插入当前页面DOM；
 			 //注意：若为ajax请求，则需将如下代码放在处理完ajax响应数据之后；
 			mui.post('www.baidu.com', {
-				jobId: jobId
+				applyId: self.applyId
 			}, function(data) {
-				
+
 			}, 'json');
 		</script>
 	</body>
