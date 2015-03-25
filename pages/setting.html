@@ -61,18 +61,18 @@
 		<div id="share" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a href="#">分享到QQ空间</a>
+					<a href="#" id="qq">分享到QQ空间</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a href="#">分享到微博</a>
+					<a href="#" id="weibo">分享到微博</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a href="#">分享到朋友圈</a>
+					<a href="#" id="wechat">分享到朋友圈</a>
 				</li>
 			</ul>
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a href="#picture"><b>取消</b></a>
+					<a href="#" id="cancel"><b>取消</b></a>
 				</li>
 			</ul>
 		</div>
@@ -80,70 +80,112 @@
 		<script src="../js/app.js"></script>
 		<script type="text/javascript">
 			mui.init();
+						var templates = {};
+			var getTemplate = function(name, header, content, loading) {
+				var template = templates[name];
+				if (!template) {
+					//预加载共用父模板；
+					var headerWebview = mui.preload({
+						url: header,
+						id: name + "-main",
+						styles: {
+							popGesture: "hide"
+						},
+						extras: {
+							mType: 'main'
+						}
+					});
+					//预加载共用子webview
+					var subWebview = mui.preload({
+						url: !content ? "" : content,
+						id: name + "-sub",
+						styles: {
+							top: '45px',
+							bottom: '0px'
+						},
+						extras: {
+							mType: 'sub'
+						}
+					});
+					subWebview.addEventListener('loaded', function() {
+						subWebview.show();
+					});
+					subWebview.hide();
+					headerWebview.append(subWebview);
+					//iOS平台支持侧滑关闭，父窗体侧滑隐藏后，同时需要隐藏子窗体；
+					if (mui.os.ios) { //5+父窗体隐藏，子窗体还可以看到？不符合逻辑吧？
+						headerWebview.addEventListener('hide', function() {
+							subWebview.hide("none");
+						});
+					}
+					templates[name] = template = {
+						name: name,
+						header: headerWebview,
+						content: subWebview,
+						loaded: loading
+					};
+				}
+				return template;
+			};
+			
+			mui.plusReady(function(){
+				getTemplate('setting-template','setting-template.html');
+			});
 			 //退出登录
 			document.querySelector("#logoff").addEventListener('tap', function() {
 				plus.nativeUI.showWaiting("正在注销");
-				plus.storage.clear();
-				plus.nativeUI.closeWaiting();
-				mui.toast("注销成功");
+				setTimeout(function() {
+					plus.storage.clear();
+					plus.nativeUI.closeWaiting();
+					mui.toast("注销成功");
+				}, 500);
 			});
-			mui("ul").on('tap', 'a', function() {
-				var title = null;
+			mui('.menu').on('tap', 'a', function() {
 				var href = this.href;
-				var innerText = this.innerText;
-				if (!~innerText.indexOf("退出")) {
-					if (!~innerText.indexOf("分享")) {
-						if (~href.indexOf("person")) {
-							title = "个人中心";
-						} else {
-							title = innerText;
-						}
-						if (~innerText.indexOf("意见")) {
-							mui.openWindow({
-								url: href,
-								waiting: {
-									autoShow: true
-								}
-							});
-						} else {
-							template = plus.webview.getWebviewById("default-main");
-							//获得共用子webview
-							subWebview = template.children()[0];
-							//通知模板修改标题，并显示隐藏右上角图标；
-							mui.fire(template, 'updateHeader', {
-								title: title
-							});
-							if (subWebview.getURL() != href) {
-								subWebview.loadURL(href);
-							} else {
-								subWebview.show();
-							}
-							template.show('slide-in-right', 150);
-						}
-					}
+				var title = this.innerText;
+				if(~href.indexOf('person')){
+					title = "个人中心";
+				}
+				if(href.indexOf('share')<0){
+					var template = getTemplate('setting-template');
+					var headerWebview = template.header;
+					//获得共用子webview
+					var contentWebview = template.content;
+					mui.fire(headerWebview, 'updateHeader', {
+						title: title,
+						showMenu: false
+					});
+					contentWebview.loadURL(href);
+					contentWebview.show();
+					headerWebview.show('fade-in');
 				}
 			});
-			mui('body').on('shown', '.mui-popover', function(e) {
-				//console.log('shown', e.detail.id);//detail为当前popover元素
-			});
-			mui('body').on('hidden', '.mui-popover', function(e) {
-				//console.log('hidden', e.detail.id);//detail为当前popover元素
-			});
+			
+			
+			mui('body').on('shown', '.mui-popover', function(e) {});
+			mui('body').on('hidden', '.mui-popover', function(e) {});
 			mui('body').on('tap', '.mui-popover-action li>a', function() {
 				var a = this,
 					parent;
-				//根据点击按钮，反推当前是哪个actionsheet
 				for (parent = a.parentNode; parent != document.body; parent = parent.parentNode) {
 					if (parent.classList.contains('mui-popover-action')) {
-						shareAction('weixin', 'WXSceneTimeline');
-						break;
+						var id = a.id;
+						switch (id) {
+							case "cancel":
+								mui('#' + parent.id).popover('toggle');
+								break;
+							case "wechat":
+								mui('#' + parent.id).popover('toggle');
+								shareAction('weixin', 'WXSceneTimeline');
+								break;
+							default:
+								mui('#' + parent.id).popover('toggle');
+								mui.toast("\"" + a.innerText + "\"功能正在紧急修复");
+								break;
+						}
 					}
 				}
-				//关闭actionsheet
-				mui('#' + parent.id).popover('toggle');
-				mui.toast("\"" + a.innerText + "\"功能正在紧急修复");
 			});
-			
 			var shares = null;
 			var sharecontent = '我爱你',
 				sharehref = 'http://img5.tvsou.com/forenotice_images/20140804/2014-08-04-04-34-05.jpg',
@@ -157,7 +199,7 @@
 						shares[t.id] = t;
 					}
 				}, function(e) {
-					mui.toast("获取分享服务列表失败：" + e.message);
+					mui.toast("分享取消");
 				});
 			});
 
@@ -180,8 +222,8 @@
 				}
 				s.send(msg, function() {
 					mui.toast('分享成功');
-				}, function(e) {
-					mui.toast('分享失败，错误信息，' + e.message)
+				}, function() {
+					mui.toast('分享取消');
 				});
 			}
 
@@ -197,8 +239,8 @@
 					mui.toast("未授权");
 					s.authorize(function() {
 						shareMessage(id, s, ex);
-					}, function(e) {
-						mui.toast("认证授权失败：" + e.code + " - " + e.message);
+					}, function() {
+						mui.toast("认证授权失败");
 					});
 				}
 			}

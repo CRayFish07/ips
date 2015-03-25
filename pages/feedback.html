@@ -10,35 +10,29 @@
 		<style type="text/css">
 			body,
 			.mui-content {
-				background-color: #fff;
-			}
-			.mui-content {
+				background-color: #EFEFF4;
 				margin-top: 10px;
 			}
 			.mui-content input {
 				height: 50px;
 				background-color: #fefefe;
 				border: 1px groove #FAFAFA;
-				border-radius: 0;
-				border-left: none;
-				border-right: none;
+				border-radius: 5px;
 			}
 			.mui-content textarea {
-				border: none;
+				
 			}
 		</style>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<button type="button" class="mui-btn mui-btn-primary mui-btn-link" style="float: right;"><span class="mui-icon mui-icon-paperplane" style="font-size: 30px;"></span></button>
-			<h1 class="mui-title">意见反馈</h1>
-		</header>
 		<div class="mui-content">
-			<h5 style="position: absolute;top: 210px; right: 10px;z-index: 1;"><span id="counter">0</span>/140字</h5>
+			<div style="padding: 5px;">
+
 			<textarea rows="7" placeholder="请输入反馈意见..."></textarea>
 			<input type="email" required="required" class="mui-input-clear" placeholder=" 手机/邮箱">
+			<button class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined" style="padding: 10px; margin: 2px auto;">提交</button>
+			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/app.js"></script>
@@ -62,17 +56,6 @@
 						mui.toast("反馈失败");
 					}
 				});
-			});
-			
-			/*字数统计*/
-			document.querySelector("textarea").addEventListener('change', function() {
-				document.getElementById("counter").innerText = this.value.length;
-			});
-			document.querySelector("textarea").addEventListener('keydown', function() {
-				document.getElementById("counter").innerText = this.value.length;
-			});
-			document.querySelector("textarea").addEventListener('keyup', function() {
-				document.getElementById("counter").innerText = this.value.length;
 			});
 		</script>
 	</body>
